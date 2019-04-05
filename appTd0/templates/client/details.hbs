@@ -1,0 +1,11 @@
+<div class="list-group">
+	<div class="list-group-item-active">Details</div>
+	<div class="list-group-item">{{model.details}}</div>
+	<div class="list-group-item">Age : {{model.age}}</div>
+	
+	<div class="list-group-item">
+		<button class="btn btn-dark" {{action "fermer"}}>Fermer</button>
+	</div>
+</div>
+
+{{outlet}}

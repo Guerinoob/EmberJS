@@ -1,0 +1,61 @@
+
+<div class="container border border-secondary p-0">
+	<div class="bg-secondary">
+		<h1>Contacts</h1>
+	</div>
+
+	<div class="container-fluid">
+		{{input placeholder="Filter..." value=model.filtre class="form-control"}}
+		<br />
+
+		<table class="table table-striped">
+			<thead class="thead-dark">
+				<tr class="row">
+					<th class="col">Nom</th>
+					<th class="col">Prenom</th>
+					<th class="col">Mail</th>
+					<th class="col">Options</th>
+				</tr>
+			</thead>
+			<tbody>
+				{{#each model.contacts as |c|}}
+					<tr class="row">
+						<td class="col">{{c.nom}}</td>
+						<td class="col">{{c.prenom}}</td>
+						<td class="col">{{c.mail}}</td>
+						<td class="col">
+						{{#link-to "contacts.edit" c class="btn btn-secondary btn-sm"}}
+							{{fa-icon "edit"}}
+						{{/link-to}}
+						
+						<button class="btn btn-danger btn-sm" {{action "supprimer" c}}>
+							{{fa-icon "remove"}}
+						</button>
+						</td>
+					</tr>
+				{{/each}}
+			</tbody>
+		</table>
+
+		<p>{{model.contactsCount}} contacts trouvé(s)</p>
+
+		{{#link-to "contacts.add"}}
+
+			{{#bs-button}}
+				Ajouter...
+			{{/bs-button}}
+
+		{{/link-to}}
+
+		{{#if model.deletedsCount}}
+			<button class="btn btn-danger" {{action "undelete" model.deleteds}} >Annuler la suppression ({{model.deletedsCount}})</button>
+
+			<button class="btn btn-danger" {{action "confirmDelete" model.deleteds}} >Confirmer les suppressions ({{model.deletedsCount}})</button>
+		{{/if}}
+
+	{{outlet}}
+	</div>
+
+</div>
+
+

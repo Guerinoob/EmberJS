@@ -1,0 +1,14 @@
+<h1>Note :</h1>
+{{textarea class="form-control" value=model.content name="messageNote" maxlength=model.MAX}}
+<br />
+
+<button class="button btn-dark" {{action "save" model}}>Enregistrer</button>
+<button class="button btn-dark" {{action "clear" model}}>Effacer</button>
+
+<br /><br />
+
+<div name="status" class={{model.style}}><p>Nombre de caractères restants : {{model.size}}</p></div>
+
+{{#if model.info}}
+<div name="info" class="alert alert-success">{{model.info}}</div>
+{{/if}}

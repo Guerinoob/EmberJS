@@ -1,0 +1,55 @@
+<div class="container">
+
+	<h1>Sélectionnez vos produits</h1>
+
+	<div class="row">
+
+		<div class="col-sm">
+			<h2>Produits disponibles :</h2>
+			{{multi-select elements=model.dispoItems selectedIds=model.dispoItemsIds_}}
+		</div>
+
+		<div class="col-sm">
+
+			{{#bs-button block=true onClick=(action "addToIncluded" model.dispoItems_ model)}}
+				{{fa-icon "step-forward"}}
+			{{/bs-button}}
+
+			{{#bs-button block=true onClick=(action "addAllToIncluded" model)}}
+				{{fa-icon "fast-forward"}}
+			{{/bs-button}}
+
+			{{#bs-button block=true onClick=(action "removeFromIncluded" model.includedItems_ model)}}
+				{{fa-icon "step-backward"}}
+			{{/bs-button}}
+
+			{{#bs-button block=true onClick=(action "removeAllFromIncluded" model)}}
+				{{fa-icon "fast-backward"}}
+			{{/bs-button}}
+
+		</div>
+
+		<div class="col-sm">
+			<h2>Produits sélectionnés :</h2>
+			{{multi-select elements=model.includedItems selectedIds=model.includedItemsIds_}}
+		</div>
+
+	</div>
+
+	<p>{{model.includedItems.length}} produits inclus</p>
+
+	<div class="row">
+
+		<div class="col-sm">
+		
+			{{#link-to "step2"}}
+				{{#bs-button}}
+					Étape suivante {{fa-icon "arrow-right"}}
+				{{/bs-button}}
+			{{/link-to}}
+
+		</div>
+
+	</div>
+
+</div>

@@ -1,0 +1,71 @@
+
+<div class="ui container">
+
+	<hr />
+
+	<form class="ui fluid form">
+
+		<div class="field">
+			<div class="ui basic label">
+				Name :
+			</div>
+				{{input class="ui input" value=model.copy.name}}
+
+		</div>
+
+		<div class="field">
+			<div class="ui basic label">
+				Description :
+			</div>
+				{{textarea class="ui textarea" value=model.copy.description}}
+
+		</div>
+
+		<div class="field">
+			<div class="ui basic label">
+				StartDate :
+			</div>
+				{{input type="date" class="ui input" value=model.copy.creationDate}}
+
+		</div>
+
+		<div class="field">
+			<div class="ui basic label">
+				DueDate :
+			</div>
+				{{input type="date" class="ui input" value=model.copy.dueDate}}
+
+		</div>
+
+		<div class="field">
+			<div class="ui basic label">
+				Owner :
+			</div>
+
+			<select onChange={{action "changeOwner" value="target.value"}}>
+				{{#each model.developers as |dev|}}
+					<option value={{dev}}>{{dev.identity}}</option>
+				{{/each}}
+			</select>
+
+		</div>
+
+		<div class="fieldset">
+
+			<button class="positive ui button" {{action "save" model}}>
+				<i class="check circular icon"></i>
+				Validate
+			</button>
+
+			{{#link-to "projects"}}
+				<button class="ui button">
+					<i class="remove circular icon"></i>
+					Cancel
+				</button>
+			{{/link-to}}
+
+		</div>
+
+	</form>
+
+</div>

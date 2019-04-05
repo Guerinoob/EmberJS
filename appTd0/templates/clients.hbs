@@ -1,0 +1,19 @@
+<table border="2" width="100%">
+	<tr>
+		<td><b>Nom</b></td>
+		<td><b>Âge</b></td>
+		<td><b>Détails</b></td>
+	</tr>
+{{#each model as |person index|}}
+	<tr>
+		<td>{{person.nom}}</td>
+		<td>{{person.age}}</td>
+		<td>
+			{{#link-to "client-d" index}}
+			+
+			{{/link-to}}
+		</td>
+	</tr>
+{{/each}}
+</table>
+{{outlet}}

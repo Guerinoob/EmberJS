@@ -1,0 +1,24 @@
+
+	<h1>Ajouter un contact</h1>
+
+	<hr />
+
+	<form class="form-group">
+		{{input placeholder="Nom" value=model.copy.nom}}
+		{{input placeholder="Prénom" value=model.copy.prenom}}
+		{{input placeholder="Mail" value=model.copy.mail}}
+
+
+		<button class="btn btn-secondary" {{action 'addContact' model}} disabled={{model.copy.invalide}}>Valider</button>
+
+
+		{{#link-to "contacts"}}
+			{{#bs-button}}
+				Annuler
+			{{/bs-button}}
+		{{/link-to}}
+
+	</form>
+
+
+{{outlet}}

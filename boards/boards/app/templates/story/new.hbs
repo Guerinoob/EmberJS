@@ -1,0 +1,99 @@
+
+<div class="ui container">
+
+	<h1>Add a story</h1>
+
+	<form class="ui fluid form">
+
+		<div class="field">
+			<div class="ui basic label">
+				Name :
+			</div>
+				{{input class="ui input" value=model.copy.code}}
+
+		</div>
+
+		<div class="field">
+			<div class="ui basic label">
+				Description :
+			</div>
+				{{textarea class="ui textarea" value=model.copy.description}}
+
+		</div>
+
+		<div class="field">
+			<div class="ui basic label">
+				Owner :
+			</div>
+
+			{{#ui-dropdown class="selection" selected=model.copy.developer onChange=(action (mut model.copy.developer)) as |execute mapper|}}
+		      <div class="default text">{{if model.copy.developer model.owner.identity "Choose the owner..."}}</div>
+		      <i class="dropdown icon"></i>
+		      <div class="menu">
+		        {{#each model.developers as |developer|}}
+		          <div data-value="{{map-value mapper developer}}" class="item">
+		            {{developer.identity}}
+		          </div>
+		        {{/each}}
+		      </div>
+		    {{/ui-dropdown}}
+
+		</div>
+
+		<div class="field">
+			<div class="ui basic label">
+				Tags :
+			</div>
+			<div class="ui segment">
+			{{#each model.copy.tags as |t|}}
+				<div class="ui step"><a class="ui circular {{t.color}} label"></a>{{t.title}}</div>
+			{{/each}}
+			</div>
+
+
+			<div class="ui segment">
+			{{input class="ui input" value=model.tag.title}}
+
+			{{#ui-dropdown class="selection" selected=model.tag.color onChange=(action (mut model.tag.color)) as |execute mapper|}}
+			<div class="default text">{{if model.tag.color model.tag.color "Choose a color..."}}</div>
+		      <i class="dropdown icon"></i>
+		      <div class="menu">
+		        {{#each model.colors as |color|}}
+		          <div data-value="{{map-value mapper color}}" class="item">
+		            {{color}}
+		          </div>
+		        {{/each}}
+		      </div>
+		    {{/ui-dropdown}}
+
+		    <button class="neutral ui button" {{action "addTag" model}}>
+				<i class="check circular icon"></i>
+				Add tag
+			</button>
+			</div>
+
+		</div>
+
+		{{input type="hidden" value=model.copy.project}}
+
+		<div class="fieldset">
+
+			<button class="positive ui button" {{action "save" model}}>
+				<i class="check circular icon"></i>
+				Validate
+			</button>
+
+			{{#link-to "projects"}}
+				<button class="ui button">
+					<i class="remove circular icon"></i>
+					Cancel
+				</button>
+			{{/link-to}}
+
+		</div>
+
+	</form>
+
+</div>
+
+{{outlet}}

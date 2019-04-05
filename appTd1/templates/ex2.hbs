@@ -1,0 +1,43 @@
+<h1>Services</h1>
+
+<div class="alert alert-info">
+	<p>Choississez les éléments à inclure</p>
+	<p><b>{{model.countActive}} services sélectionnés</b></p>
+</div>
+
+<ul>
+	{{#each model.services as |ser index|}}
+
+		{{#if ser.active}}
+			<li><button class="button btn-success" {{action "toggleActive" model index}} >{{ser.name}} | {{ser.price}}</button></li>
+		{{else}}
+			<li><button class="button btn-dark" {{action "toggleActive" model index}}>{{ser.name}} | {{ser.price}}</button></li>
+		{{/if}}
+			
+		<br />
+	{{/each}}
+</ul>
+
+{{input type="checkbox" checked=model.codeActive}}
+{{input type="text" value=model.codeEntre}}
+
+<hr />
+
+<div class="alert alert-success">
+<h2>Total : <b>{{model.sumActive}}</b></h2>
+</div>
+
+<hr />
+
+{{#if model.codeActive}}
+	<div class="alert alert-success">
+
+	{{#if model.remise}}
+		<h2>Remise : <b>{{model.remise}}</b></h2>
+		<h2>Total : <b>{{model.total}}</b></h2>
+	{{else}}
+		<h2>Le code est incorrect ou le panier est vide</h2>
+	{{/if}}
+	
+	</div>
+{{/if}}

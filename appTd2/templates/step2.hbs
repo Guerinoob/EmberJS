@@ -1,0 +1,31 @@
+<div class="container">
+
+	<h1>Votre choix</h1>
+
+	{{#each model.includedItems as |item|}}
+
+		<a href={{item.url}}>
+			<div class="row">
+				<div class="col-sm">
+					<img src={{item.image}} height="100px" width="100px" /> {{item.title}}
+				</div>
+			</div>
+		</a>
+		<hr />
+	{{/each}}
+
+	<div class="row">
+
+		<div class="col-sm">
+		
+			{{#link-to "step1"}}
+				{{#bs-button}}
+					{{fa-icon "arrow-left"}} Retour au choix précédent
+				{{/bs-button}}
+			{{/link-to}}
+
+		</div>
+
+	</div>
+
+</div>

@@ -1,0 +1,108 @@
+
+<div class="ui container">
+
+	<div class="ui horizontal list">
+		<div class="item">
+			
+				Home
+			
+		</div>
+		<div class="item">
+			{{#link-to "projects"}}
+				Projects
+			{{/link-to}}
+		</div>
+		<div class="item">
+			{{#link-to "developers"}}
+				Developers
+			{{/link-to}}
+		</div>
+	</div>
+
+
+	<div class="ui header">
+		<i class="plus icon"></i>
+
+		<div class="content">
+			<h1>models\Projects</h1>
+			Data administration
+		</div>
+	</div>
+
+	{{#link-to "projects.new"}}
+		<button class="ui orange button">
+			<i class="plus icon"></i>
+			Add a new models\Project...
+		</button>
+	{{/link-to}}
+
+
+	<table class="ui single line table">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Description</th>
+				<th>StartDate</th>
+				<th>DueDate</th>
+				<th>Owner</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			{{#each model as |project|}}
+				<tr>
+					{{#link-to 'project' project.id}}
+						<td>{{project.name}}</td>
+					{{/link-to}}
+					<td>{{project.description}}</td>
+					<td>{{moment-format project.creationDate 'MM/DD/YYYY' 'MM/DD/YYYY'}}</td>
+					<td>{{moment-format project.dueDate 'MM/DD/YYYY' 'MM/DD/YYYY'}}</td>
+					<td>{{project.developer.identity}}</td>
+					<td style="text-align:right">
+
+						{{#link-to "projects.edit" project}}
+							<button class="circular icon ui button">
+								<i class="edit icon"></i>
+							</button>
+						{{/link-to}}
+
+						<button class="circular icon ui button" {{action "askDeleteConfirm" project}}>
+							<i class="remove red icon"></i>
+						</button>
+					</td>
+				</tr>
+			{{/each}}
+		</tbody>
+
+	</table>
+
+	{{#if model.del}}
+		<div class="ui icon message">
+
+			<i class="question circle icon"></i>
+
+			<div class="content">
+				
+
+				<div class="header">
+					Remove {{model.del.name}} ?
+				</div>
+				<p>
+					<button class="positive ui button" {{action "deleteProject" model.del}}>
+						<i class="check circular icon"></i>
+						Validate
+					</button>
+
+					<button class="negative ui button" onClick={{action "cancelDelete"}}>
+						<i class="remove circular icon"></i>
+						Cancel
+					</button>
+				</p>
+			</div>
+
+		</div>
+	{{/if}}
+
+</div>
+
+{{outlet}}

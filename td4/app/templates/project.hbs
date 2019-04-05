@@ -1,0 +1,87 @@
+
+<div class="ui container">
+
+	<div class="ui horizontal list">
+		<div class="item">
+			
+				Home
+			
+		</div>
+		<div class="item">
+			{{#link-to "projects"}}
+				Projects
+			{{/link-to}}
+		</div>
+		<div class="item">
+			{{#link-to "developers"}}
+				Developers
+			{{/link-to}}
+		</div>
+	</div>
+
+
+	<div class="ui header">
+		<i class="plus icon"></i>
+
+		<div class="content">
+			<h1>Stories</h1>
+		</div>
+	</div>
+
+	{{#link-to "story.new" model.id}}
+		<button class="ui orange button">
+			<i class="plus icon"></i>
+			Add story in project...
+		</button>
+	{{/link-to}}
+
+
+	<ul>
+		{{#each model.stories as |story|}}
+			<li>
+				<table class="ui table">
+					<tbody>
+						<tr>
+							<td>{{story.code}}</td>
+						</tr>
+
+						<tr>
+							<td>{{story.description}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</li>
+		{{/each}}
+	</ul>
+	
+
+	{{#if model.del}}
+		<div class="ui icon message">
+
+			<i class="question circle icon"></i>
+
+			<div class="content">
+				
+
+				<div class="header">
+					Remove {{model.del.name}} ?
+				</div>
+				<p>
+					<button class="positive ui button" {{action "deleteStory" model.del}}>
+						<i class="check circular icon"></i>
+						Validate
+					</button>
+
+					<button class="negative ui button" onClick={{action "cancelDelete"}}>
+						<i class="remove circular icon"></i>
+						Cancel
+					</button>
+				</p>
+			</div>
+
+		</div>
+	{{/if}}
+
+</div>
+
+{{outlet}}
